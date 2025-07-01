@@ -163,29 +163,7 @@ const Toggle = styled.button`
   }
 `
 
-const DifficultySelector = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 15px;
-`
 
-const DifficultyOption = styled.button`
-  padding: 12px;
-  border: 2px solid ${props => props.selected ? '#667eea' : '#e2e8f0'};
-  border-radius: 12px;
-  background: ${props => props.selected ? 'rgba(102, 126, 234, 0.1)' : 'white'};
-  color: ${props => props.selected ? '#667eea' : '#4a5568'};
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Noto Sans JP', sans-serif;
-  
-  &:hover {
-    border-color: #667eea;
-  }
-`
 
 const StartButton = styled(motion.button)`
   width: 100%;
@@ -228,7 +206,6 @@ function SettingsScreen({ setCurrentStory }) {
   const navigate = useNavigate()
   const [genre, setGenre] = useState('mystery')
   const [duration, setDuration] = useState(15)
-  const [difficulty, setDifficulty] = useState('beginner')
   const [soundEnabled, setSoundEnabled] = useState(true)
   const [vibrationEnabled, setVibrationEnabled] = useState(true)
   const [arEnabled, setArEnabled] = useState(true)
@@ -244,7 +221,6 @@ function SettingsScreen({ setCurrentStory }) {
     const story = {
       genre,
       duration,
-      difficulty,
       title: genreOptions[genre].title,
       description: genreOptions[genre].description,
       settings: {
@@ -309,38 +285,12 @@ function SettingsScreen({ setCurrentStory }) {
         </SliderContainer>
       </SettingSection>
 
-      <SettingSection
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <SectionTitle>🎯 難易度</SectionTitle>
-        <DifficultySelector>
-          <DifficultyOption
-            selected={difficulty === 'beginner'}
-            onClick={() => setDifficulty('beginner')}
-          >
-            初級
-          </DifficultyOption>
-          <DifficultyOption
-            selected={difficulty === 'intermediate'}
-            onClick={() => setDifficulty('intermediate')}
-          >
-            中級
-          </DifficultyOption>
-          <DifficultyOption
-            selected={difficulty === 'advanced'}
-            onClick={() => setDifficulty('advanced')}
-          >
-            上級
-          </DifficultyOption>
-        </DifficultySelector>
-      </SettingSection>
+
 
       <SettingSection
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
       >
         <SectionTitle>⚙️ 体験設定</SectionTitle>
         
@@ -382,7 +332,7 @@ function SettingsScreen({ setCurrentStory }) {
         onClick={handleStart}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
       >
